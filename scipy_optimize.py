@@ -1,5 +1,6 @@
 # optimize module by Travis E. Oliphant
 # A collection of optimization algorithms. Version 0.5
+# Ref: https://github.com/scipy/scipy/blob/v1.5.3/scipy/optimize/optimize.py
 
 import warnings
 from numpy import (eye, zeros, shape, sqrt, Inf, asfarray, isinf)
@@ -385,7 +386,7 @@ def _minimize_neldermead(func, x0, args=(), callback=None,
             for i in range(2,history+2):
                 fval_sum += abs(fval_history[-1] - fval_history[-i])
             fval_sum = fval_sum/history
-            if fval_history[-1]<50 and fval_sum < 1:
+            if fval_history[-1]<75 and fval_sum < 1:
             # if fval_sum < 1:
                 break
 

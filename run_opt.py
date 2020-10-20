@@ -19,13 +19,13 @@ load = False
 save = True
 
 # Simulation time
-sim_times = [5, 20] # e.g. it can be [20]
+sim_times = [5, 10, 20] # e.g. it can be [20]
 
 # Lower bound
-LB = [0.3, 0.1, 0.005, 0.01, 1.0]
+LB = [0.6, 0.2, 0.008, 0.01, 5.0]
 
 # Upper bound
-UB = [0.9, 0.7, 0.012, 1.00, 20.0]
+UB = [0.8, 0.4, 0.012, 1.00, 20.0]
 
 for sim_time in sim_times:
     # Initial solution
@@ -34,7 +34,7 @@ for sim_time in sim_times:
             x0 = list(pickle.load(f))
             print ' Last best solution:', x0[0], ',', x0[1], ',', x0[2], ',', x0[3], ',', x0[4]
     else:
-        x0 = [0.7, 0.364, 0.012, 1.00, 10.0]
+        x0 = [0.7, 0.364, 0.012, 1.00, 20.0]
 
         # 5cm case:
         # x0 = [6.75401407e-01, 3.35455415e-01, 1.01656163e-02, 2.41966281e-01, 1.96258919e+01]  # 21.4% in 5 sec
@@ -46,7 +46,7 @@ for sim_time in sim_times:
 
     # Optimizer
     vrtx = Excavation(sim_time)
-    res = constrNM(vrtx.obj_func, x0, LB, UB, maxiter=1000, full_output=True, disp=True, save=save)
+    res = constrNM(vrtx.obj_func, x0, LB, UB, maxfun=200, full_output=True, disp=True, save=save)
     del vrtx
 
     # Results
