@@ -95,8 +95,6 @@ class Excavation:
 
         print ' MAPE:', round(mape,1), '%'
         self.OutputFile.write("{:f} \n".format(mape))
-        # info['mape_history'].append(mape)
-        # print mape_history
 
         return mape
 

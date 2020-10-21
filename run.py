@@ -10,9 +10,9 @@
 
 import pickle
 
-from hyb_obj_func import Excavation
+from obj_func import Excavation
 from constr_nm import constrNM, printDict
-from plot_opt import plot
+from plot import plot
 
 # Load/Save last best solution? True/False
 load = False  
@@ -36,12 +36,12 @@ for sim_time in sim_times:
     else:
         x0 = [0.7, 0.364, 0.012, 1.00, 20.0]
 
-        # 5cm case:
+        # 5cm case took 80 min
         # x0 = [6.75401407e-01, 3.35455415e-01, 1.01656163e-02, 2.41966281e-01, 1.96258919e+01]  # 21.4% in 5 sec
         # x0 = [6.78161282e-01, 3.35453257e-01, 1.11135779e-02, 2.09709838e-01, 1.96984516e+01]  # 12.6% in 10 sec 
         # x0 = [6.83741285e-01, 3.35455728e-01, 1.10511245e-02, 2.11047748e-01, 1.98022255e+01]  # 8.2% in 20 sec (34 sec runtime and 1.2% mpe)
 
-        # 2cm case took 15 min (starting with best solution):
+        # 2cm case took 10 min (starting with best solution):
         # x0 = [7.04127367e-01, 3.35380587e-01, 1.09857695e-02, 3.47156506e-01, 1.98045868e+01]  # 6.2% in 20 sec (24 sec runtime and ?% mpe)
 
     # Optimizer

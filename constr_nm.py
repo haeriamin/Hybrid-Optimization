@@ -6,7 +6,7 @@ import pickle
 import numpy as np
 # import scipy.optimize as sciopt
 
-from scipy_optimize import fmin
+from nelder_mead import fmin
 
 
 def constrNM(func, x0, LB, UB, args=(), xtol=0.0001, ftol=0.0001, maxiter=None, maxfun=None, full_output=0, disp=0, retall=0, callback=None, save=True):

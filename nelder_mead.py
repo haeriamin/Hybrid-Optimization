@@ -376,10 +376,6 @@ def _minimize_neldermead(func, x0, args=(), callback=None,
 
     # Main loop ---------------------------------------------------------------
     while (fcalls[0] < maxfun and iterations < maxiter):
-        # if (np.max(np.ravel(np.abs(sim[1:] - sim[0]))) <= xatol and
-        #         np.max(np.abs(fsim[0] - fsim[1:])) <= fatol):
-        #     break
-
         # added
         if iterations > history+2:
             fval_sum = 0
@@ -390,6 +386,10 @@ def _minimize_neldermead(func, x0, args=(), callback=None,
             # if fval_sum < 1:
                 break
 
+        # if (np.max(np.ravel(np.abs(sim[1:] - sim[0]))) <= xatol and
+        #         np.max(np.abs(fsim[0] - fsim[1:])) <= fatol):
+        #     break
+        
         xbar = np.add.reduce(sim[:-1], 0) / N
         xr = (1 + rho) * xbar - rho * sim[-1]
         fxr = func(xr)
