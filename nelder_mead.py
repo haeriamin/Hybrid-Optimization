@@ -382,8 +382,8 @@ def _minimize_neldermead(func, x0, args=(), callback=None,
             for i in range(2,history+2):
                 fval_sum += abs(fval_history[-1] - fval_history[-i])
             fval_sum = fval_sum/history
-            if fval_history[-1]<75 and fval_sum < 1:
-            # if fval_sum < 1:
+            # if fval_history[-1]<75 and fval_sum < 1:
+            if fval_sum < 1:
                 break
 
         # if (np.max(np.ravel(np.abs(sim[1:] - sim[0]))) <= xatol and

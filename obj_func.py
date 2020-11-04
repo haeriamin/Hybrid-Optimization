@@ -32,7 +32,6 @@ class ExcavDefinition():
         self.vertical_velocity = 0.025  # m/s
         self.forward_time = opt_time #19.38  # sec
         self.vertical_time = 2  # sec
-        self.depth = 0.05 #0.02 # m
         self.mass = 1.743  # kg
         self.material = 'Wheel'
         self.groupId = 0
@@ -49,7 +48,7 @@ class BinDefinition:
 
 
 class Excavation:
-    def __init__(self, opt_time):
+    def __init__(self, opt_time, depths):
         # create output directory
         self.VortexOutputPath = "./input/"
         # what to run
@@ -63,6 +62,7 @@ class Excavation:
         # self.maxT = self.excavDef.forward_time + self.excavDef.vertical_time # sim time
         self.g = 9.81  # [m/s2]
         self.opt_time = opt_time
+        self.depths = depths
 
         self.CSVoutputPath = "./output/"
         dataPath = self.CSVoutputPath
@@ -72,8 +72,14 @@ class Excavation:
 
 
     def obj_func(self, x):
-        F_hyb = self.run_vortex(x)
-        F_exp = get_exp(self.excavDef.depth)
+        F_hyb = []
+        F_exp = []
+        print 'Parameters:', x[0], ',', x[1], ',', x[2], ',', x[3], ',', x[4]
+        for depth in self.depths:
+            print ' Vortex is running --', 100*depth, 'cm depth'
+            F_hyb.append(self.run_vortex(x, depth))
+            F_exp.append(get_exp(depth))
+            
 
         # Calculate mean absolute percentage error
         step = 0.1
@@ -82,16 +88,17 @@ class Excavation:
         fr_exp = 62.5
         fr_hyb = 60
         mape = 0
-        for t in range(start_time, end_time):
-            hyb = int(t*step*fr_hyb) + 190  # for 60Hz data collection 
-            exp = int(t*step*fr_exp)
-            Fz_error = abs((F_exp['Fz'][exp] - F_hyb['Fz'][hyb]) / F_exp['Fz'][exp])  # Forward
-            Fy_error = abs((F_exp['Fy'][exp] - F_hyb['Fy'][hyb]) / F_exp['Fy'][exp])  # Vertical
-            wz = 0.5
-            wy = 1 - wz
-            mape += wz * Fz_error + wy * Fy_error
+        for i in range(len(self.depths)): 
+            for t in range(start_time, end_time):
+                hyb = int(t*step*fr_hyb) + 190  # for 60Hz data collection 
+                exp = int(t*step*fr_exp)
+                Fz_error = abs((F_exp[i]['Fz'][exp] - F_hyb[i]['Fz'][hyb]) / F_exp[i]['Fz'][exp])  # Forward
+                Fy_error = abs((F_exp[i]['Fy'][exp] - F_hyb[i]['Fy'][hyb]) / F_exp[i]['Fy'][exp])  # Vertical
+                wz = 0.5
+                wy = 1 - wz
+                mape += wz * Fz_error + wy * Fy_error
                  
-        mape = mape / (end_time-start_time) * 100
+        mape = mape / (end_time-start_time) * 100 / len(self.depths)
 
         print ' MAPE:', round(mape,1), '%'
         self.OutputFile.write("{:f} \n".format(mape))
@@ -99,7 +106,7 @@ class Excavation:
         return mape
 
 
-    def run_vortex(self, x):
+    def run_vortex(self, x, depth):
         F = {'Fx': [], 'Fy': [], 'Fz': []}
         # ------------------------------------------------------------------
         # Soil properties & Simulation presets
@@ -108,8 +115,6 @@ class Excavation:
         radius = x[2]
         surcharge_factor = x[3]
         iteration_number = int(x[4])
-        print 'Vortex is running with:'
-        print '', x[0], ',', x[1], ',', x[2], ',', x[3], ',', x[4]
 
         CF = 0.0  # Collision error compensation factor
         density_grain = 2580.0  # [kg/m^3]
@@ -332,7 +337,7 @@ class Excavation:
                     state = 'Lower'
 
             if (state is 'Lower'):  # Excav is within buffer of soil surface
-                Height = self.excavDef.height/2*math.sin(math.pi/180*(self.excavDef.slope_angle+90)) - self.excavDef.depth + self.soil_height
+                Height = self.excavDef.height/2*math.sin(math.pi/180*(self.excavDef.slope_angle+90)) - depth + self.soil_height
                 if excavPos[2] <= 1.02*Height:
                     linear.inputLinearCoordinate.motor.desiredVelocity.value = 0.  # forward
                     load.inputLinearCoordinate.motor.desiredVelocity.value = 0.  # vertical

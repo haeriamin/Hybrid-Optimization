@@ -98,7 +98,7 @@ class ExcavDefinition:
         self.vertical_velocity = 0.025  # m/s
         self.forward_time = 19.38  # sec
         self.vertical_time = 2  # sec
-        self.depth = 0.02 #0.02 # m
+        self.depth = 0.05  # m
         self.mass = 1.743  # kg
         self.material = 'Wheel'
         self.groupId = 0
@@ -151,13 +151,19 @@ g = 9.81  # [m/s2]
 # friction_coef_soil_tool = 3.35455728e-01
 # radius = 1.10511245e-02
 # surcharge_factor = 2.11047748e-01
-# iteration_number = 1.98022255e+01
+# iteration_number = 19
 # 2cm:
-friction_coef = 7.04127367e-01
-friction_coef_soil_tool = 3.35380587e-01
-radius = 1.09857695e-02
-surcharge_factor = 3.47156506e-01
-iteration_number = 1.98045868e+01
+# friction_coef = 7.04127367e-01
+# friction_coef_soil_tool = 3.35380587e-01
+# radius = 1.09857695e-02
+# surcharge_factor = 3.47156506e-01
+# iteration_number = 19
+# Both:
+friction_coef = 7.11653299e-01
+friction_coef_soil_tool = 3.97859022e-01
+radius = 1.19631175e-02
+surcharge_factor = 2.47373440e-01
+iteration_number = 19
 
 CF = 0.0  # Collision error compensation factor
 density_grain = 2580.0  # [kg/m^3]

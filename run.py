@@ -18,8 +18,11 @@ from plot import plot
 load = False  
 save = True
 
+# Excavator depths
+depths = [0.02, 0.05]  # m
+
 # Simulation time
-sim_times = [5, 10, 20] # e.g. it can be [20]
+sim_times = [5, 10, 20]  # sec
 
 # Lower bound
 LB = [0.6, 0.2, 0.008, 0.01, 5.0]
@@ -36,17 +39,21 @@ for sim_time in sim_times:
     else:
         x0 = [0.7, 0.364, 0.012, 1.00, 20.0]
 
-        # 5cm case took 80 min
-        # x0 = [6.75401407e-01, 3.35455415e-01, 1.01656163e-02, 2.41966281e-01, 1.96258919e+01]  # 21.4% in 5 sec
-        # x0 = [6.78161282e-01, 3.35453257e-01, 1.11135779e-02, 2.09709838e-01, 1.96984516e+01]  # 12.6% in 10 sec 
-        # x0 = [6.83741285e-01, 3.35455728e-01, 1.10511245e-02, 2.11047748e-01, 1.98022255e+01]  # 8.2% in 20 sec (34 sec runtime and 1.2% mpe)
+        # 5cm case -- 20 sec -- took 150 min -- ? fevals
+        # x0 = [6.60321784e-01, 3.98142579e-01, 1.16217771e-02, 2.20756469e-01, 1.78680532e+01] # 8.9% in 20
 
-        # 2cm case took 10 min (starting with best solution):
-        # x0 = [7.04127367e-01, 3.35380587e-01, 1.09857695e-02, 3.47156506e-01, 1.98045868e+01]  # 6.2% in 20 sec (24 sec runtime and ?% mpe)
+        # 5cm case -- 5, 10, 20 sec -- took 30 min
+        # x0 = [6.83741285e-01, 3.35455728e-01, 1.10511245e-02, 2.11047748e-01, 1.98022255e+01]  # 8.2% (34 sec runtime and 1.2% mpe)
+
+        # 2cm case -- starting with 5cm best solution -- took 10 min
+        # x0 = [7.04127367e-01, 3.35380587e-01, 1.09857695e-02, 3.47156506e-01, 1.98045868e+01]  # 6.2% (24 sec runtime and ?% mpe)
+
+        # Both 2cm and 5cm cases -- 5, 10, 20 sec -- took 40 min
+        # x0 = [7.11653299e-01, 3.97859022e-01, 1.19631175e-02, 2.47373440e-01, 1.97698647e+01]  # 18.6% 
 
     # Optimizer
-    vrtx = Excavation(sim_time)
-    res = constrNM(vrtx.obj_func, x0, LB, UB, maxfun=200, full_output=True, disp=True, save=save)
+    vrtx = Excavation(sim_time, depths)
+    res = constrNM(vrtx.obj_func, x0, LB, UB, maxfun=200, full_output=True, disp=True, save=save)  # maxiter=200 
     del vrtx
 
     # Results
@@ -56,3 +63,5 @@ for sim_time in sim_times:
     plot(sim_time)
 
     load = True  
+
+# plot(5)
