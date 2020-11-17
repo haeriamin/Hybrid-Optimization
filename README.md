@@ -19,14 +19,14 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
 * `run.py`: Script for running the optimization.
 
-    * The optimization variables' initial, lower and upper bounds can be defined.
+    * The initial, lower and upper bounds of optimization variables are defined here.
         ```python
-        x0 = [,]
+        X0 = [,]
         LB = [,]
         UB = [,]
         ```
 
-    * Some other settings including loading/saving optimal solution, and excavation depth and time can be set.
+    * Some other settings including loading/saving optimal solution, and excavation depth and time can also be set.
         ```python
         load = True/False
         save = True/False
@@ -53,3 +53,9 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
 
 ## Setup
+
+### Requirements
+
+* VxSim
+* numpy
+* pickle
