@@ -55,9 +55,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
         ```python
         def run_vortex(self, x, depth):
-            .
-            .
-            .
+            ...
         ```
 
     * The mean absolute percentage error (MAPE) is calculated using the results from Vortex and experiment.
@@ -68,10 +66,8 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
 * `plot.py`: Plot MAPEs vs number of function evaluations and save in folder `output/`.
 
-* `test.py`: example connecting the model to input dummy data.
+* `test.py`: Finally, test the Vortex (excavation) model via the optimal solution and see the results.
 
-
-## Setup
 
 ### Requirements
 
