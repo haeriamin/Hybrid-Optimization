@@ -17,9 +17,10 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 |- test.py
 ```
 
-* `run.py`: Script for running the optimization. Here,
+* `run.py`: Script for running the optimization.
 
-    * The optimization variables and their initial, lower and upper bound can be defined.
+    * The optimization variables' initial, lower and upper bounds can be defined.
+        `x0 = []` `LB = []` `UB = []`
 
     * Some other settings including loading/saving optimal solution, and excavation depth and time can be set.
         `load = True/False`
