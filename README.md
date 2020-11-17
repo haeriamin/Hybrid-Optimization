@@ -19,7 +19,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 |- test.py
 ```
 
-* `run.py`: Run the optimization.
+* `run.py`: Runs the optimization.
 
     * The initial, lower and upper bounds of optimization variables are defined here.
         ```python
@@ -37,9 +37,9 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
         ```
 
 
-* `constr_nm.py`: Implement the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
+* `constr_nm.py`: Implements the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
 
-* `nelder_mead.py`: Implement the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py).
+* `nelder_mead.py`: Implements the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py).
 
     * This is modified to terminate the optimization loop when no significant error changes happen (e.g. `<1`%) during the last specified iterations by setting e.g. `history = 10` as fallows:
 
@@ -51,7 +51,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
                 break
         ```
 
-* `obj_func.py`: Implement the objective function.
+* `obj_func.py`: Implements the objective function.
 
     * The Vortex (excavation) model is called here and implemented in:
 
@@ -64,11 +64,11 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
     * The Vortex files and reference (experimental) results should already be provided in folder `input/`.
 
-* `ref.py`: Read reference (experimental) results from the files provided in `input/`.
+* `ref.py`: Reads reference (experimental) results from the files provided in `input/`.
 
-* `plot.py`: Plot MAPE versus number of function evaluations, and save in folder `output/`.
+* `plot.py`: Plots MAPE versus number of function evaluations, and save in folder `output/`.
 
-* `test.py`: Finally, test the Vortex (excavation) model via the optimal solution and see the results.
+* `test.py`: Tests the Vortex (excavation) model via the optimal solution and saves the results.
 
 
 ## Requirements
