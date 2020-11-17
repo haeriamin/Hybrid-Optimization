@@ -1,6 +1,7 @@
-# Optimizing Hybrid model parameters in Vortex Studio Developed by CM-Labs Inc.
+# Optimizing Hybrid model parameters in Vortex Studio
 
-This optimization or tuning is done via gradient-free Nelder-Mead (DownHill Simplex) method.
+The optimization is done via the gradient-free Nelder-Mead method (aka Downhill Simplex Algorithm). The code is specified for simulating soil cutting operations (e.g. excavation).
+
 
 ## Code structure
 
@@ -16,7 +17,9 @@ This optimization or tuning is done via gradient-free Nelder-Mead (DownHill Simp
 |- test.py
 ```
 
-* `run.py`: Script for training, evaluating and generating rollout trajectories.
+* `run.py`: Script for running the optimization. Here,
+    * The optimization variables and their initial, lower and upper bound can be defined.
+    * Some other settings including loading/saving optimal solution, and excavation depth and time can be set.
 
 * `constr_nm.py`: Implementation of the learnable one-step model that returns the next position of the particles given inputs. It includes data preprocessing, Euler integration, and a helper method for building normalized training outputs and targets.
 
@@ -33,3 +36,6 @@ This optimization or tuning is done via gradient-free Nelder-Mead (DownHill Simp
 * `output/`: example connecting the model to input dummy data.
 
 * `test.py`: example connecting the model to input dummy data.
+
+
+## Setup
