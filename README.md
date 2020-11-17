@@ -35,9 +35,9 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
         ```
 
 
-* `constr_nm.py`: Implementation of a constrained Nelder-Mead method [ref](https://github.com/alexblaessle/constrNMPy).
+* `constr_nm.py`: Implementation of the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy). This file is called from `run.py`.
 
-* `nelder_mead.py`: Implementation of the graph network used at the core of the learnable part of the model.
+* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py). This file is called from `constr_nm.py`.
 
 * `obj_func.py`: Visualization code for displaying rollouts such as the example animation.
 
