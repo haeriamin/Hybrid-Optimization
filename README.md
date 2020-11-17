@@ -6,7 +6,13 @@ This optimization or tuning is done via gradient-free Nelder-Mead (DownHill Simp
 The code package is consist of different files as follows:
 
 ```
-/run.py/constr_nm.py/nelder_mead.py/obj_func.py/ref.py
+# Hybrid-Optimization
+|-- run.py
+|    |-- constr_nm.py
+|    |    |-- constr_nm.py
+|    |    |    |-- nelder_mead.py
+|    |    |    |    |-- obj_func.py
+|    |    |    |    |-- ref.py
 ```
 
 * `run.py`: Script for training, evaluating and generating rollout trajectories.
