@@ -69,7 +69,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 * `test.py`: Finally, test the Vortex (excavation) model via the optimal solution and see the results.
 
 
-### Requirements
+## Requirements
 
 * VxSim
 * numpy
