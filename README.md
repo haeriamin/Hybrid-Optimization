@@ -10,8 +10,8 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 |   - constr_nm.py
 |       - nelder_mead.py
 |           - obj_func.py
-|           - ref.py
 |               - input/
+|               - ref.py
 |       - plot.py
 |   - output/
 |- test.py
@@ -37,25 +37,38 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
 * `constr_nm.py`: Implementation of the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
 
-* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py). This is modified to terminate the optimization loop when no significant error changes happen (e.g. under `1`%) during the last specified iterations by setting e.g. `history = 10` as fallows:
+* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py).
 
-    ```python
-    if iterations > history+2:
-        for i in range(2,history+2):
-            fval_sum += abs(fval_history[-1] - fval_history[-i])
-        if fval_sum/history < 1:
-            break
-    ```
+    * This is modified to terminate the optimization loop when no significant error changes happen (e.g. `<1`%) during the last specified iterations by setting e.g. `history = 10` as fallows:
 
-* `obj_func.py`: Visualization code for displaying rollouts such as the example animation.
+        ```python
+        if iterations > history+2:
+            for i in range(2,history+2):
+                fval_sum += abs(fval_history[-1] - fval_history[-i])
+            if fval_sum/history < 1:
+                break
+        ```
 
-* `ref.py`: example connecting the model to input dummy data.
+* `obj_func.py`: Implementation of the objective function.
 
-* `input/`: example connecting the model to input dummy data.
+    * The Vortex (excavation) model is implemented and called here.
 
-* `plot.py`: example connecting the model to input dummy data.
+        ```python
+        def run_vortex(self, x, depth):
+            .
+            .
+            .
+        ```
 
-* `output/`: example connecting the model to input dummy data.
+    * The mean absolute percentage error (MAPE) is calculated using the results from Vortex and experiment.
+
+    * The Vortex files and reference (experimental) results should already be provided in folder `input/`.
+
+* `ref.py`: Reading reference (experimental) results from the files provided in `input/`.
+
+* `plot.py`: Visualization code for displaying rollouts such as the example animation.
+
+    * `output/`: example connecting the model to input dummy data.
 
 * `test.py`: example connecting the model to input dummy data.
 
