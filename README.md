@@ -25,7 +25,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
     * Some other settings including loading/saving optimal solution, and excavation depth and time can be set.
 
-        `load = True/False`
+        load = True/False
         `save = True/False`
         `depths = []  # [m]`
         `sim_times = []  # [sec]`
