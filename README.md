@@ -37,7 +37,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
 * `constr_nm.py`: Implementation of the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
 
-* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py). This is modified to terminate the optimization loop when no significant changes happen (e.g. 1%) after a specific iteration number by setting e.g. `history = 10` as fallows:
+* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py). This is modified to terminate the optimization loop when no significant error changes happen (e.g. under `1`%) during the last specified iterations by setting e.g. `history = 10` as fallows:
 
     ```python
     if iterations > history+2:
