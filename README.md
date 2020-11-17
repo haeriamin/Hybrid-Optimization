@@ -1,4 +1,4 @@
-# Optimizing Hybrid model parameters in Vortex Studio
+# Optimizing Hybrid Model Parameters in Vortex Studio
 
 The optimization is done via the gradient-free Nelder-Mead method (aka Downhill Simplex Algorithm). The code is specified for simulating soil cutting operations (e.g. excavation).
 
@@ -35,7 +35,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
         ```
 
 
-* `constr_nm.py`: Implementation of the learnable one-step model that returns the next position of the particles given inputs. It includes data preprocessing, Euler integration, and a helper method for building normalized training outputs and targets.
+* `constr_nm.py`: Implementation of a constrained Nelder-Mead method [ref](https://github.com/alexblaessle/constrNMPy).
 
 * `nelder_mead.py`: Implementation of the graph network used at the core of the learnable part of the model.
 
