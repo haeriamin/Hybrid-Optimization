@@ -35,9 +35,17 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
         ```
 
 
-* `constr_nm.py`: Implementation of the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy). This file is called from `run.py`.
+* `constr_nm.py`: Implementation of the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
 
-* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py). This file is called from `constr_nm.py`.
+* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py). This is modified to terminate the optimization loop when no significant changes happen (e.g. 1%) after a specific iteration number by setting e.g. `history = 10` as fallows:
+
+    ```python
+    if iterations > history+2:
+        for i in range(2,history+2):
+            fval_sum += abs(fval_history[-1] - fval_history[-i])
+        if fval_sum/history < 1:
+            break
+    ```
 
 * `obj_func.py`: Visualization code for displaying rollouts such as the example animation.
 
