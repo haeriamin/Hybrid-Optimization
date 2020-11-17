@@ -64,7 +64,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
 * `ref.py`: Read reference (experimental) results from the files provided in `input/`.
 
-* `plot.py`: Plot MAPEs vs number of function evaluations and save in folder `output/`.
+* `plot.py`: Plot MAPE versus number of function evaluations, and save in folder `output/`.
 
 * `test.py`: Finally, test the Vortex (excavation) model via the optimal solution and see the results.
 
