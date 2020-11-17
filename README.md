@@ -18,10 +18,18 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 ```
 
 * `run.py`: Script for running the optimization. Here,
+
     * The optimization variables and their initial, lower and upper bound can be defined.
+
     * Some other settings including loading/saving optimal solution, and excavation depth and time can be set.
         `load = False`
+
         `save = True`
+
+        `depths = [0.02, 0.05]  # [m]`
+
+        `sim_times = [5, 10, 20]  # [sec]`
+
 
 * `constr_nm.py`: Implementation of the learnable one-step model that returns the next position of the particles given inputs. It includes data preprocessing, Euler integration, and a helper method for building normalized training outputs and targets.
 
