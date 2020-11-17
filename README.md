@@ -2,7 +2,7 @@
 
 The optimization is done via the gradient-free Nelder-Mead method (aka Downhill Simplex Algorithm). The code is specified for simulating soil cutting operations (e.g. excavation).
 
-<img src="https://github.com/haeriamin/Hybrid-Optimization/blob/main/output/excav.gif" alt="drawing" width="380"> <img src="https://github.com/haeriamin/Hybrid-Optimization/blob/main/output/mape5-10-20_2-5cm.png" alt="drawing" width="420"> 
+<img src="https://github.com/haeriamin/Hybrid-Optimization/blob/main/output/excav.gif" alt="drawing" width="400"> <img src="https://github.com/haeriamin/Hybrid-Optimization/blob/main/output/mape5-10-20_2-5cm.png" alt="drawing" width="420"> 
 
 
 ## Code structure
