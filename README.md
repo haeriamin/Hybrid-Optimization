@@ -17,7 +17,7 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 |- test.py
 ```
 
-* `run.py`: Script for running the optimization.
+* `run.py`: Run the optimization.
 
     * The initial, lower and upper bounds of optimization variables are defined here.
         ```python
@@ -35,9 +35,9 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
         ```
 
 
-* `constr_nm.py`: Implementation of the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
+* `constr_nm.py`: Implement the constrained Nelder-Mead method [(reference)](https://github.com/alexblaessle/constrNMPy).
 
-* `nelder_mead.py`: Implementation of the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py).
+* `nelder_mead.py`: Implement the Nelder-Mead method [(reference)](https://github.com/scipy/scipy/blob/master/scipy/optimize/optimize.py).
 
     * This is modified to terminate the optimization loop when no significant error changes happen (e.g. `<1`%) during the last specified iterations by setting e.g. `history = 10` as fallows:
 
@@ -49,9 +49,9 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
                 break
         ```
 
-* `obj_func.py`: Implementation of the objective function.
+* `obj_func.py`: Implement the objective function.
 
-    * The Vortex (excavation) model is implemented and called here.
+    * The Vortex (excavation) model is called here and implemented in:
 
         ```python
         def run_vortex(self, x, depth):
@@ -64,11 +64,9 @@ The optimization is done via the gradient-free Nelder-Mead method (aka Downhill 
 
     * The Vortex files and reference (experimental) results should already be provided in folder `input/`.
 
-* `ref.py`: Reading reference (experimental) results from the files provided in `input/`.
+* `ref.py`: Read reference (experimental) results from the files provided in `input/`.
 
-* `plot.py`: Visualization code for displaying rollouts such as the example animation.
-
-    * `output/`: example connecting the model to input dummy data.
+* `plot.py`: Plot MAPEs vs number of function evaluations and save in folder `output/`.
 
 * `test.py`: example connecting the model to input dummy data.
 
